@@ -23,7 +23,7 @@ def login():
 def signin():
     password = request.args.get('password', type = str)
     print(password)
-    print(jsonreg.get.data("appdata\password.json"))
+    print(jsonreg.get.data("appdata/password.json"))
     if(jsonreg.get.data("appdata\password.json") == password):
         known_ips.append(request.remote_addr)
         return "True"
