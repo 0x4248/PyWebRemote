@@ -10,14 +10,29 @@
             body{
                 font-family: Arial, Helvetica, sans-serif;
             }
+            .box{
+                margin: auto;
+                width: 50%;
+                box-shadow: 0px 0px 5px;
+                border-radius: 10px;
+                padding: 10px;
+            }
+            .footer {
+                position: fixed;
+                bottom: 0;
+                color: gray;
+            }
         </style>
     </head>
     <body>
-        <h1>Welcome admin</h1>
-        <button onclick="shutdown()">Shutdown Flask Server</button>
-        <button onclick="logout_everyone()">Log out all users</button>
-        <p id="info">Loading server info</p>
-        <p id="cpu">Loading CPU</p>
+        <h1 style="text-align: center;">Welcome admin</h1>
+        <div class="box">
+            <button onclick="shutdown()">Shutdown Flask Server</button>
+            <button onclick="logout_everyone()">Log out all users</button>
+            <p id="info">Loading server info</p>
+            <p id="cpu">Loading CPU</p>
+        </div>
+        <p class="footer">Made By awesomelewis2007</p>
         <script>
             const sleep = (milliseconds) => {
                 return new Promise(resolve => setTimeout(resolve, milliseconds))
