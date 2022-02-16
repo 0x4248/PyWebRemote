@@ -10,12 +10,14 @@ Install Modules
 Linux based severs
 ```
 python3 -m pip install flask
+python3 -m pip install jsonreg
 python3 -m pip install psutl
 ```
 
 Windows based severs
 ```
 python -m pip install flask
+python -m pip install jsonreg
 python -m pip install psutl
 ```
 Running Py WebRemote
