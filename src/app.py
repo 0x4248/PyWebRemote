@@ -13,7 +13,7 @@ def shutdown_server():
     
 @app.route('/')
 def home():
-    return 'head to /login to login'
+    return render_template("homepage.html")
 @app.route('/login')
 def login():
     if request.remote_addr in known_ips:
