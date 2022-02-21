@@ -47,7 +47,7 @@ def info():
         return redirect("/login",200)
     return "OS:"+str(platform.system())+"<br>"+"OS Version:"+str(platform.version())+"<br>"+"Architecture:"+str(platform.architecture())
 @app.route('/logout_everyone')
-def logout_everyone():
+def logout():
     if request.remote_addr not in known_ips:
         return redirect("/login",200)
     known_ips.remove(request.remote_addr)
@@ -57,4 +57,9 @@ def cpu_usage():
     if request.remote_addr not in known_ips:
         return redirect("/login",200)
     return str(psutil.cpu_percent())+"%"
+@app.route('/ram_usage')
+def ram_usage():
+    if request.remote_addr not in known_ips:
+        return redirect("/login",200)
+    return str(psutil.virtual_memory()[2])+"%"
 app.run(host = '0.0.0.0', port = PORT,debug=True)

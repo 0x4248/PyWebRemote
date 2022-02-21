@@ -27,10 +27,13 @@
     <body>
         <h1 style="text-align: center;">Welcome admin</h1>
         <div class="box">
-            <button onclick="shutdown()">Shutdown Flask Server</button>
-            <button onclick="logout_everyone()">Log out all users</button>
+            <button onclick="logout()">Log out</button>
+            <hr>
             <p id="info">Loading server info</p>
-            <p id="cpu">Loading CPU</p>
+            <h3 style="margin: 0px;">Server Resource Usage</h3>
+            <hr>
+            <p id="cpu" style="margin:0px;">Loading CPU usage</p>
+            <p id="ram" style="margin:0px;">Loading RAM usage</p>
         </div>
         <br>
         <div class="box">
@@ -53,17 +56,7 @@
                 xhttp.open("GET", "/info", true);
                 xhttp.send();
             }
-            async function shutdown(){
-                var xhttp = new XMLHttpRequest();
-                signin_response = ""
-                xhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                    }
-                };
-                xhttp.open("GET", "/exit", true);
-                xhttp.send();
-            }
-            async function logout_everyone(){
+            async function logout(){
                 var xhttp = new XMLHttpRequest();
                 signin_response = ""
                 xhttp.onreadystatechange = function() {
@@ -71,7 +64,7 @@
                         window.location.pathname = "/login"
                     }
                 };
-                xhttp.open("GET", "/logout_everyone", true);
+                xhttp.open("GET", "/logout", true);
                 xhttp.send();
             }
             async function cpu_ping(){
@@ -88,7 +81,22 @@
                     await sleep(1000)
                 }
             }
+            async function ram_ping(){
+                while(true == true){
+                    var xhttp = new XMLHttpRequest();
+                    signin_response = ""
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            document.getElementById("ram").innerHTML = "RAM Usage:"+this.responseText
+                        }
+                    };
+                    xhttp.open("GET", "/ram_usage", true);
+                    xhttp.send();
+                    await sleep(1000)
+                }
+            }
             cpu_ping()
+            ram_ping()
             info()
         </script>
     </body>
