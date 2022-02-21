@@ -46,7 +46,7 @@ def info():
     if request.remote_addr not in known_ips:
         return redirect("/login",200)
     return "OS:"+str(platform.system())+"<br>"+"OS Version:"+str(platform.version())+"<br>"+"Architecture:"+str(platform.architecture())
-@app.route('/logout_everyone')
+@app.route('/logout')
 def logout():
     if request.remote_addr not in known_ips:
         return redirect("/login",200)
