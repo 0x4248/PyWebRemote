@@ -5,6 +5,7 @@ import psutil
 app = Flask('app')
 global known_ips
 known_ips = []
+PORT = jsonreg.get.data("appdata\settings\port.json")
 def shutdown_server():
     func = request.environ.get('werkzeug.server.shutdown')
     if func is None:
@@ -59,4 +60,4 @@ def cpu_usage():
     if request.remote_addr not in known_ips:
         return redirect("/login",200)
     return str(psutil.cpu_percent())+"%"
-app.run(host = '0.0.0.0', port = 8080,debug=True)
+app.run(host = '0.0.0.0', port = PORT,debug=True)
