@@ -29,21 +29,13 @@
         <h1 style="text-align: center;">Py WebRemote</h1>
         <div class="center-div">
             <p>Enter your password to login to the admin portal</p>
+            <p id="correct"></p>
             <input id="password" placeholder="password" type="password">
             <button onclick="login()">Login</button>
             <button><a href="/forgot">Forgot?</a></button>
         </div>
         <p class="footer">By clicking login your IP address will be temporally stored on this server</p>
         <script>
-            function setCookie(name,value,days) {
-                var expires = "";
-                if (days) {
-                    var date = new Date();
-                    date.setTime(date.getTime() + (days*24*60*60*1000));
-                    expires = "; expires=" + date.toUTCString();
-                }
-                document.cookie = name + "=" + (value || "")  + expires + "; path=/";
-            }
             console.log("%cDO NOT SCREEN SHARE THIS SCREEN IT MAY HAVE YOUR PASSWORD HERE!", "color:red; font-size:50px");
             async function login(){
                 var xhttp = new XMLHttpRequest();
@@ -52,6 +44,9 @@
                     if (this.readyState == 4 && this.status == 200) {
                         if(this.responseText == "True"){
                             window.location.pathname = "/admin"
+                        };
+                        if(this.responseText == "False"){
+                            document.getElementById("correct").innerHTML = "Incorrect Password "
                         };
                     }
                 };
