@@ -2,16 +2,13 @@ from flask import Flask , render_template, request, redirect
 import jsonreg
 import platform
 import psutil
+import sys
 app = Flask('app')
 global known_ips
 known_ips = []
 PORT = jsonreg.get.data("appdata\settings\port.json")
 def shutdown_server():
-    func = request.environ.get('werkzeug.server.shutdown')
-    if func is None:
-        raise RuntimeError('Not running with the Werkzeug Server')
-    func()
-    
+    sys.exit()
 @app.route('/')
 def home():
     return render_template("homepage.html")
@@ -43,7 +40,7 @@ def exit():
     if request.remote_addr not in known_ips:
         return redirect("/login",200)
     shutdown_server()
-    return True
+    return "True"
 @app.route('/info')
 def info():
     if request.remote_addr not in known_ips:
@@ -54,7 +51,7 @@ def logout_everyone():
     if request.remote_addr not in known_ips:
         return redirect("/login",200)
     known_ips.remove(request.remote_addr)
-    return True
+    return "True"
 @app.route('/cpu_usage')
 def cpu_usage():
     if request.remote_addr not in known_ips:
