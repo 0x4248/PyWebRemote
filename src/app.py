@@ -73,4 +73,18 @@ def ram_usage():
     if request.remote_addr not in known_ips:
         return redirect("/login",200)
     return str(psutil.virtual_memory()[2])+"%"
+@app.route("/ps")
+def ps():
+    pylog.log("flask.log",request.remote_addr+" -> /ps")
+    if request.remote_addr not in known_ips:
+        return redirect("/login",200)
+    processes = ""
+    for proc in psutil.process_iter():
+        try:
+            processName = proc.name()
+            processID = proc.pid
+            processes = processes+str(processName) + ' --> '+ str(processID)+","
+        except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+            return 500
+    return processes
 app.run(host = '0.0.0.0', port = PORT,debug=True)
