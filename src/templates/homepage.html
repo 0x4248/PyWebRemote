@@ -10,10 +10,17 @@
             body{
                 font-family: Arial, Helvetica, sans-serif;
             }
-            .footer {
+            .footer-left {
                 position: fixed;
                 bottom: 0;
+                right: 70%;
+                left: 10px;
                 color: gray;
+            }
+            .bottom-image{
+                position: absolute;
+                right: 0px;
+                bottom: 0px;  
             }
         </style>
     </head>
@@ -21,6 +28,7 @@
         <h1>Py WebRemote</h1>
         <p>You have landed on the Py WebRemote homepage click login to go to the login page</p>
         <button><a href="/login">Login</a></button>
-        <p class="footer">Not an admin? Why not install Py WebRemote on to your server <a href="https://github.com/awesomelewis2007/PyWebremote">here</a></p>
+        <p class="footer-left"><strong>Not an admin?</strong> Why not install Py WebRemote on to your server <a href="https://github.com/awesomelewis2007/PyWebremote">here</a></p>
+        <img src="https://www.python.org/static/community_logos/python-powered-w-200x80.png" class="bottom-image">
     </body>
 </html>
